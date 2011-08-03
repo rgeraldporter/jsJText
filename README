@@ -13,19 +13,19 @@ Usage:
 $version = new JVersion;
 $joomla = $version->getShortVersion();
 
-if(substr($joomla,0,3) == '1.5')  // ### Loads in 1.5 only
+if(substr($joomla,0,3) == '1.5')  // Loads in 1.5 only
 {
 	require_once (JPATH_COMPONENT.DS.'helpers'.DS.'jsjtext'.'.php');
 }
 ?>
 
-- Somewhere in your code (model is probably best) make reference to each language string that you will need for Javascript (1.6+ code included):
+- Somewhere in your code (creating a new function in your model is probably best), make reference to each language string that you will need for Javascript (1.6+ code included):
 
 <?php
 $version = new JVersion;
 $joomla = $version->getShortVersion();
 
-if(substr($joomla,0,3) == '1.5')
+if(substr($joomla,0,3) == '1.5') // Loads in 1.5 only
 {
 	
 	jsJText::script('COMEXTENSION_JS_LANG_STRING_ONE');
@@ -35,7 +35,7 @@ if(substr($joomla,0,3) == '1.5')
 	jsJText::load();
 
 }
-else // if 1.6, 1.7… etc
+else // Loads in 1.6, 1.7… etc
 {
 
 	JText::script('COMEXTENSION_JS_LANG_STRING_ONE');
