@@ -1,0 +1,53 @@
+jsJText for Joomla! 1.5
+=======================
+
+jsJText is a backport of JText::script() support from Joomla 1.6+.
+
+It should be useful if you have a Joomla 1.5 extension that uses language in Javascript files that you'd like to use the JText::_() localization capabilities for. This can help facilitate taking advantage of this new capability in Joomla 1.6+ with minimal code forking in your extension versions.
+
+Usage:
+
+- Load the library via something like...
+
+<?php
+$version = new JVersion;
+$joomla = $version->getShortVersion();
+
+if(substr($joomla,0,3) == '1.5')  // ### Loads in 1.5 only
+{
+	require_once (JPATH_COMPONENT.DS.'helpers'.DS.'jsjtext'.'.php');
+}
+?>
+
+- Somewhere in your code (model is probably best) make reference to each language string that you will need for Javascript (1.6+ code included):
+
+<?php
+$version = new JVersion;
+$joomla = $version->getShortVersion();
+
+if(substr($joomla,0,3) == '1.5')
+{
+	
+	jsJText::script('COMEXTENSION_JS_LANG_STRING_ONE');
+	jsJText::script('COMEXTENSION_JS_LANG_STRING_TWO');
+	
+	// after all the strings are listed, call jsJText::load()
+	jsJText::load();
+
+}
+else // if 1.6, 1.7… etc
+{
+
+	JText::script('COMEXTENSION_JS_LANG_STRING_ONE');
+	JText::script('COMEXTENSION_JS_LANG_STRING_TWO');
+
+}
+?>
+
+- In your javascript files, call Joomla.JText._() whenever you have a language string:
+
+alert( Joomla.JText._('COMEXTENSION_JS_LANG_STRING_ONE') );
+
+Known Issues:
+
+None yet. Will not work for Joomla 1.0, obviously.
