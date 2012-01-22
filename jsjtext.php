@@ -3,7 +3,8 @@
 *	jsJText Helper for Joomla 1.5
 *
 *	Author: 	Robert Gerald Porter <rob@weeverapps.com>
-*	Version: 	0.1
+*	Version: 	0.1.1
+*   Date:		January 22, 2012
 *	License: 	GPL v3.0
 *
 *	This code is free software: you can redistribute it and/or modify
@@ -35,8 +36,10 @@ class jsJText extends JText
 	 * jsJText::script("MY_FIRST_COMPONENT_STRING_NEEDED_IN_JS");
 	 * jsJText::script("MY_NTH_COMPONENT_STRING_NEEDED_IN_JS");  
 	 * // and so on…
+	 * // you must then call load(), as below:
+	 * jsJText::load();
 	 *
-	 * in JS:
+	 * in the JS files, load localization via:
 	 *
 	 * //String is loaded in javascript via Joomla.JText._() method
 	 * alert( Joomla.JText._('MY_FIRST_COMPONENT_STRING_NEEDED_IN_JS') );
